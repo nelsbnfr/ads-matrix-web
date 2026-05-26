@@ -13,7 +13,7 @@ export function Grid({ children, variant = "t" }) {
 export function BlurredGrid({ children }) {
   return (
     <div className="relative flex flex-shrink-0">
-      <div className="border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid p-8 backdrop-blur-xs">
+      <div className="border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid-white p-8 backdrop-blur-xs">
         {children}
       </div>
     </div>

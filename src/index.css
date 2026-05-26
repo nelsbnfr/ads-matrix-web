@@ -43,3 +43,8 @@
     );
   background-size: 40px 40px;
 }
+.text-glow {
+  text-shadow:
+    0 0 8px var(--color-primary),
+    0 0 24px var(--color-bg-shadow);
+}

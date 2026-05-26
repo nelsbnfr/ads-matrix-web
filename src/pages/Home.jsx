@@ -1,4 +1,4 @@
-import { BlurredGrid, Grid, PerspectiveGrid } from "../components/Gitter";
+import { BlurredGrid, Grid, PerspectiveGrid } from "../components/Grid";
 import adsMatrixContent from "../data/content";
 
 export default function Home() {
@@ -17,6 +17,18 @@ export default function Home() {
         </span>
       </div>
     </BlurredGrid>
+  ));
+
+  const listItem = data.topOnePercent.steps.map((item) => (
+    <div key={item.number} className="flex gap-2 font-vga-text text-xs mb-4">
+      <div>
+        <span className="text-primary">{">"}</span>
+      </div>
+      <div>
+        {" "}
+        <span className="text-white">{item.text}</span>
+      </div>
+    </div>
   ));
   console.log(data);
   return (
@@ -66,6 +78,30 @@ export default function Home() {
           </section>
         </PerspectiveGrid>
       </div>
+      <section className="w-full flex flex-col justify-start items-start p-8 relative z-20 gap-4 text-left">
+        <h2 className="text-white text-4xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
+          So bringen <br /> wir Werbekonten <br />
+          in die Top 1%
+        </h2>
+        <div>{listItem}</div>
+        <button className="text-white uppercase text-2xl border-primary border p-4 pt-5 leading-none">
+          Kostenloses Erstgespräch
+        </button>
+      </section>
+      <Grid>
+        <section className="h-[50vh] w-full flex flex-col justify-center items-center relative z-20 gap-4 text-center">
+          <h1 className="text-white text-6xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
+            Kostenlos <br /> 7 Tage starten
+          </h1>
+          <span className="font-vga-text text-white text-sm">
+            Statt einen Risikoreichen Vertrag zu unterschreiben kannst du
+            unseren service kostenfrei nutzen.
+          </span>
+          <button className="text-white uppercase text-2xl border-primary border p-4 pt-5 leading-none">
+            Kostenloses Erstgespräch
+          </button>
+        </section>
+      </Grid>
     </main>
   );
 }

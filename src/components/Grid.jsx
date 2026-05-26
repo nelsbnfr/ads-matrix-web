@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 
 export function Grid({ children }) {
   const gridRef = useRef(null);
+  const timers = useRef({});
   const [activeCells, setActiveCells] = useState([]);
 
   const cellSize = 40;
@@ -19,48 +20,56 @@ export function Grid({ children }) {
     const id = `${col}-${row}`;
 
     setActiveCells((prev) => {
-      if (prev.includes(id)) return prev;
-      return [...prev, id];
+      if (prev.some((cell) => cell.id === id)) return prev;
+
+      return [...prev, { id, col, row }];
     });
 
-    setTimeout(() => {
-      setActiveCells((prev) => prev.filter((cell) => cell !== id));
+    clearTimeout(timers.current[id]);
+
+    timers.current[id] = setTimeout(() => {
+      setActiveCells((prev) => prev.filter((cell) => cell.id !== id));
+      delete timers.current[id];
     }, 500);
   }
 
   return (
     <div className="relative p-8">
-      <div
-        ref={gridRef}
-        onMouseMove={handleMouseMove}
-        className="relative z-30 border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid p-8 "
-      >
-        {activeCells.map((cell) => {
-          const [col, row] = cell.split("-").map(Number);
-
-          return (
+      {/* Grid Layer */}
+      <div className="absolute inset-8 pointer-events-auto z-0">
+        <div
+          ref={gridRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={() => setActiveCells([])}
+          className="relative h-full w-full overflow-hidden isolate border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid"
+        >
+          {activeCells.map((cell) => (
             <div
-              key={cell}
+              key={cell.id}
               className="grid-hover-cell"
               style={{
-                left: col * cellSize,
-                top: row * cellSize,
+                left: cell.col * cellSize,
+                top: cell.row * cellSize,
                 width: cellSize,
                 height: cellSize,
               }}
             />
-          );
-        })}
-
-        <div className="absolute -inset-8 pointer-events-none bg-linear-to-t from-[#080808] from-20% to-black/0 z-20" />
-
-        <div className="relative z-30">{children}</div>
+          ))}
+        </div>
       </div>
+
+      {/* Gradient Layer über Grid, unter Content */}
+      <div className="pointer-events-none absolute inset-0 pointer-events-none bg-gradient-to-t from-[#080808] from-10% via-[#080808]/80 to-transparent z-10" />
+
+      {/* Content Layer */}
+      <div className="pointer-events-none relative z-20 p-8">{children}</div>
     </div>
   );
 }
+
 export function ReverseGrid({ children }) {
   const gridRef = useRef(null);
+  const timers = useRef({});
   const [activeCells, setActiveCells] = useState([]);
 
   const cellSize = 40;
@@ -77,43 +86,49 @@ export function ReverseGrid({ children }) {
     const id = `${col}-${row}`;
 
     setActiveCells((prev) => {
-      if (prev.includes(id)) return prev;
-      return [...prev, id];
+      if (prev.some((cell) => cell.id === id)) return prev;
+
+      return [...prev, { id, col, row }];
     });
 
-    setTimeout(() => {
-      setActiveCells((prev) => prev.filter((cell) => cell !== id));
+    clearTimeout(timers.current[id]);
+
+    timers.current[id] = setTimeout(() => {
+      setActiveCells((prev) => prev.filter((cell) => cell.id !== id));
+      delete timers.current[id];
     }, 500);
   }
 
   return (
     <div className="relative p-8">
-      <div
-        ref={gridRef}
-        onMouseMove={handleMouseMove}
-        className="relative z-30 border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid p-8 "
-      >
-        {activeCells.map((cell) => {
-          const [col, row] = cell.split("-").map(Number);
-
-          return (
+      {/* Grid Layer */}
+      <div className="absolute inset-8 pointer-events-auto z-0">
+        <div
+          ref={gridRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={() => setActiveCells([])}
+          className="relative h-full w-full overflow-hidden isolate border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid"
+        >
+          {activeCells.map((cell) => (
             <div
-              key={cell}
+              key={cell.id}
               className="grid-hover-cell"
               style={{
-                left: col * cellSize,
-                top: row * cellSize,
+                left: cell.col * cellSize,
+                top: cell.row * cellSize,
                 width: cellSize,
                 height: cellSize,
               }}
             />
-          );
-        })}
-
-        <div className="absolute -inset-8 pointer-events-none bg-linear-to-b from-[#080808] from-20% to-black/0 z-20" />
-
-        <div className="relative z-30">{children}</div>
+          ))}
+        </div>
       </div>
+
+      {/* Gradient Layer über Grid, unter Content */}
+      <div className="pointer-events-none absolute inset-0 pointer-events-none bg-gradient-to-b from-[#080808] from-10% via-[#080808]/80 to-transparent z-10" />
+
+      {/* Content Layer */}
+      <div className="pointer-events-none relative z-20 p-8">{children}</div>
     </div>
   );
 }

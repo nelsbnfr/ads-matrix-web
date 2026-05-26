@@ -28,6 +28,15 @@
   --color-bg-shadow: oklch(0.6999 0.1999 143.37 / 30%);
   --color-text-shadow: oklch(0.6999 0.1999 143.37);
 }
+.svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.card-wobble {
+  filter: url("#card-wobble");
+}
 
 body {
   image-rendering: pixelated;

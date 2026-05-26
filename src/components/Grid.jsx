@@ -20,13 +20,11 @@ export function ReverseGrid({ children }) {
     </div>
   );
 }
-export function BlurredGrid({ children, animation, value }) {
+export function BlurredGrid({ children }) {
   return (
-    <motion.div className="relative flex flex-shrink-0">
-      <div className="border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid-white p-8 backdrop-blur-xs">
-        {children}
-      </div>
-    </motion.div>
+    <div className="client-card card-wobble relative flex-shrink-0 w-[340px] border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid-white p-8 backdrop-blur-xs">
+      {children}
+    </div>
   );
 }
 export function PerspectiveGrid({ children }) {

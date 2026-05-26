@@ -23,7 +23,7 @@ export default function Home() {
   // MAPS
   const clients = data.escapingClients.clients.map((client) => (
     <BlurredGrid>
-      <div className="flex flex-col justify-start items-center gap-8 py-20">
+      <div className="flex flex-col justify-start items-center gap-8 py-12">
         <img src="/ym_logo.png" alt="" className="size-40 object-contain" />
         <h1 className="text-white text-4xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
           {client}
@@ -97,7 +97,7 @@ export default function Home() {
                   className="flex gap-4 w-max"
                   animate={{ x: ["0%", "-50%"] }}
                   transition={{
-                    duration: 30,
+                    duration: 40,
                     ease: "linear",
                     repeat: Infinity,
                   }}
@@ -140,6 +140,39 @@ export default function Home() {
 
       <div className="crt-overlay" />
       <div className="noise-overlay" />
+      <svg className="svg-filters" aria-hidden="true">
+        <filter id="card-wobble">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.015 0.08"
+            numOctaves="2"
+            seed="2"
+            result="noise"
+          >
+            <animate
+              attributeName="baseFrequency"
+              dur="3s"
+              values="0.015 0.08; 0.025 0.12; 0.015 0.08"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="0.1"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          >
+            <animate
+              attributeName="scale"
+              dur="2.5s"
+              values="4; 12; 6; 16; 4"
+              repeatCount="indefinite"
+            />
+          </feDisplacementMap>
+        </filter>
+      </svg>
     </>
   );
 }

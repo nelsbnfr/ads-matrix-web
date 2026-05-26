@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export function Grid({ children }) {
   return (
     <div className="relative p-8">
@@ -18,13 +20,13 @@ export function ReverseGrid({ children }) {
     </div>
   );
 }
-export function BlurredGrid({ children }) {
+export function BlurredGrid({ children, animation, value }) {
   return (
-    <div className="relative flex flex-shrink-0">
+    <motion.div className="relative flex flex-shrink-0">
       <div className="border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid-white p-8 backdrop-blur-xs">
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 }
 export function PerspectiveGrid({ children }) {

@@ -1,4 +1,9 @@
-import { BlurredGrid, Grid, PerspectiveGrid } from "../components/Grid";
+import {
+  BlurredGrid,
+  Grid,
+  PerspectiveGrid,
+  ReverseGrid,
+} from "../components/Grid";
 import adsMatrixContent from "../data/content";
 
 export default function Home() {
@@ -32,7 +37,7 @@ export default function Home() {
   console.log(data);
   return (
     <>
-      <main className="flex flex-col items-center gap-16">
+      <main className="flex flex-col items-center gap-16 overflow-hidden">
         <img src="/Logo.png" alt="" className="size-20 object-contain" />
         <Grid>
           <section className="h-[50vh] w-full flex flex-col justify-center items-center relative z-20 gap-4 text-center">
@@ -92,10 +97,11 @@ export default function Home() {
             Kostenloses Erstgespräch
           </button>
         </section>
-        <Grid>
+        <ReverseGrid>
           <section className="h-[50vh] w-full flex flex-col justify-center items-center relative z-20 gap-4 text-center">
             <h1 className="text-white text-6xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
-              Kostenlos <br /> 7 Tage starten
+              Kostenlos
+              <br />7 Tage starten
             </h1>
             <span className="font-vga-text text-white text-sm">
               Statt einen Risikoreichen Vertrag zu unterschreiben kannst du
@@ -105,7 +111,7 @@ export default function Home() {
               Kostenloses Erstgespräch
             </button>
           </section>
-        </Grid>
+        </ReverseGrid>
       </main>
 
       <div className="crt-overlay" />

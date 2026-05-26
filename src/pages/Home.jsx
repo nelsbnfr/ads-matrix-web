@@ -160,14 +160,14 @@ export default function Home() {
           <feDisplacementMap
             in="SourceGraphic"
             in2="noise"
-            scale="0.1"
+            scale="10"
             xChannelSelector="R"
             yChannelSelector="G"
           >
             <animate
               attributeName="scale"
               dur="2.5s"
-              values="4; 12; 6; 16; 4"
+              values="2; 6; 6; 2; 4"
               repeatCount="indefinite"
             />
           </feDisplacementMap>

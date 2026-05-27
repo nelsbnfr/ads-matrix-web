@@ -13,6 +13,9 @@ export default async function handler(req, res) {
     if (!vorname || !nachname || !email) {
       return res.status(400).json({ error: "Missing required fields" });
     }
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ error: "Missing RESEND_API_KEY" });
+    }
 
     const { data, error } = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",

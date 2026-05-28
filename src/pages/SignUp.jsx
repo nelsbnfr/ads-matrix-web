@@ -14,22 +14,36 @@ export default function SignUp() {
       auswahl: form.get("auswahl"),
     };
 
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    fetch(
+      "https://ads-matrix-app.vercel.app/api/webhooks/leads/2950b7d3-c898-4397-b95c-db34bcb92b8c",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          full_name: "Max Mustermann",
+          email: "max@example.com",
+          phone: "+49 123 456",
+          custom_fields: {
+            budget: "10000€",
+            source: "Website Formular",
+          },
+        },
       },
-      body: JSON.stringify(payload),
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      console.error(result.error);
-      return;
-    }
-
-    console.log("Email sent", result);
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with your fetch operation:", error);
+      });
   }
   return (
     <main className="w-screen h-screen p-4 flex justify-center">

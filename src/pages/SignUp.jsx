@@ -21,7 +21,7 @@ export default function SignUp() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: {
+        body: JSON.stringify({
           full_name: "Max Mustermann",
           email: "max@example.com",
           phone: "+49 123 456",
@@ -29,7 +29,7 @@ export default function SignUp() {
             budget: "10000€",
             source: "Website Formular",
           },
-        },
+        }),
       },
     )
       .then((response) => {

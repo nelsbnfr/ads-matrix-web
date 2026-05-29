@@ -13,20 +13,17 @@ export default async function handler(req, res) {
     formData.append("budget", req.body.budget ?? "");
     formData.append("source", "Ads Matrix Website");
 
-    const response = await fetch(
-      "https://hooks.zapier.com/hooks/catch/9781487/4b40u4y/",
-      {
-        method: "POST",
-        body: formData,
-      },
-    );
+    const response = await fetch("DEINE_ZAPIER_HOOK_URL", {
+      method: "POST",
+      body: payload,
+    });
 
     const text = await response.text();
 
-    return res.status(response.status).json({
-      ok: response.ok,
-      status: response.status,
-      response: text,
+    return res.status(200).json({
+      zapierStatus: response.status,
+      zapierOk: response.ok,
+      zapierResponse: text,
     });
   } catch (error) {
     return res.status(500).json({

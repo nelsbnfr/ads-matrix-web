@@ -1,4 +1,5 @@
 import Button from "../components/Button";
+import { Box } from "../components/Grid";
 
 export default function SignUp() {
   async function handleSubmit(e) {
@@ -32,17 +33,8 @@ export default function SignUp() {
     console.log("Lead sent:", result);
   }
   return (
-    <main className="w-screen h-screen p-4 flex justify-center">
-      <section className="border-primary border-2 w-full w-full max-w-[1200px]">
-        <div className="bg-primary p-1 flex justify-between px-2">
-          <h2 className="text-xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
-            Wie erreichen wir dich?
-          </h2>
-          <h2 className="text-xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
-            X
-          </h2>
-        </div>
-
+    <main className="w-screen h-screen p-4 flex justify-center items-center">
+      <Box title="Wie erreichen wir dich?">
         <form
           onSubmit={(e) => handleSubmit(e)}
           className="px-4 py-6 flex flex-col gap-2"
@@ -96,7 +88,7 @@ export default function SignUp() {
             Abschicken
           </button>
         </form>
-      </section>
+      </Box>
     </main>
   );
 }

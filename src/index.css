@@ -69,6 +69,8 @@ body {
 @theme {
   --font-vga-headline: "IBM VGA 8x16", monospace;
   --font-vga-text: "IBM VGA 9x8", monospace;
+  --color-light: oklch(0.868562 0.1334 144.466);
+  --color-dark: oklch(0.4169 0.277584 144.4661);
   --color-primary: oklch(0.868562 0.277584 144.4661);
   --color-primary-bg: oklch(0.868562 0.277584 144.4661 / 15%);
   --color-bg-shadow: oklch(0.6999 0.1999 143.37 / 30%);

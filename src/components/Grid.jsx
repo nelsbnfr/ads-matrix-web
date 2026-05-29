@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Grid({ children }) {
   const gridRef = useRef(null);
@@ -1260,5 +1261,25 @@ export function PerspectiveGrid({ children }) {
         </svg>
       </div>
     </div>
+  );
+}
+
+export function Box({ children, title }) {
+  return (
+    <section className="border-b-dark border-r-dark border-t-light border-l-light border-2 w-full max-w-[1200px]">
+      <div className="bg-primary p-1 flex justify-between px-2">
+        <h2 className="text-xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
+          {title}
+        </h2>
+        <Link
+          to="/"
+          className="text-xl uppercase [text-shadow:0_0_12px_var(--color-primary)] border-b-dark border-r-dark border-t-light border-l-light border-2 size-8 flex items-center justify-center leading-none"
+        >
+          X
+        </Link>
+      </div>
+
+      {children}
+    </section>
   );
 }

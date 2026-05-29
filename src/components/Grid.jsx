@@ -1266,7 +1266,7 @@ export function PerspectiveGrid({ children }) {
 
 export function Box({ children, title }) {
   return (
-    <section className="border-b-dark border-r-dark border-t-light border-l-light border-2 w-full max-w-[1200px]">
+    <section className="border-b-dark border-r-dark border-t-light border-l-light border-2 w-full max-w-[1200px] min-h-140 overflow-hidden flex flex-col">
       <div className="bg-primary p-1 flex justify-between items-center px-2">
         <h2 className="text-2xl uppercase [text-shadow:0_0_12px_var(--color-primary)] leading-none">
           {title}
@@ -1341,7 +1341,6 @@ export function Box({ children, title }) {
           </svg>
         </Link>
       </div>
-
       {children}
     </section>
   );

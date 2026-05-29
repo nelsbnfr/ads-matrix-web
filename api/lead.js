@@ -4,25 +4,28 @@ export default async function handler(req, res) {
   }
 
   try {
-    const formData = new FormData();
+    const payload = new FormData();
 
-    formData.append("name", req.body.name ?? "");
-    formData.append("website", req.body.website ?? "");
-    formData.append("email", req.body.email ?? "");
-    formData.append("phone", req.body.phone ?? "");
-    formData.append("budget", req.body.budget ?? "");
-    formData.append("source", "Ads Matrix Website");
+    payload.append("name", req.body.name ?? "");
+    payload.append("website", req.body.website ?? "");
+    payload.append("email", req.body.email ?? "");
+    payload.append("phone", req.body.phone ?? "");
+    payload.append("budget", req.body.budget ?? "");
+    payload.append("source", "Ads Matrix Website");
 
-    const response = await fetch("DEINE_ZAPIER_HOOK_URL", {
-      method: "POST",
-      body: payload,
-    });
+    const response = await fetch(
+      "https://hooks.zapier.com/hooks/catch/9781487/4b40u4y/",
+      {
+        method: "POST",
+        body: payload,
+      },
+    );
 
     const text = await response.text();
 
-    return res.status(200).json({
+    return res.status(response.ok ? 200 : response.status).json({
+      success: response.ok,
       zapierStatus: response.status,
-      zapierOk: response.ok,
       zapierResponse: text,
     });
   } catch (error) {

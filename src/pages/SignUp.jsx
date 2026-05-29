@@ -4,38 +4,46 @@ import { Box } from "../components/Grid";
 import { motion } from "framer-motion";
 
 export default function SignUp() {
+  const [submitting, setSubmitting] = useState(false);
   const [send, setSend] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const form = new FormData(e.currentTarget);
+    if (submitting) return;
+    setSubmitting(true);
 
-    const payload = {
-      name: form.get("name"),
-      website: form.get("website"),
-      email: form.get("email"),
-      phone: form.get("phone"),
-      budget: form.get("budget"),
-    };
+    try {
+      const form = new FormData(e.currentTarget);
 
-    const response = await fetch("/api/lead", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+      const payload = {
+        name: form.get("name"),
+        website: form.get("website"),
+        email: form.get("email"),
+        phone: form.get("phone"),
+        budget: form.get("budget"),
+      };
 
-    const result = await response.json();
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    if (!response.ok) {
-      console.error(result);
-      return;
+      const result = await response.json();
+
+      if (!response.ok) {
+        console.error(result);
+        return;
+      }
+
+      console.log("Lead sent:", result);
+      setSend(true);
+    } finally {
+      setSubmitting(false);
     }
-
-    console.log("Lead sent:", result);
-    setSend(true);
   }
 
   function loadingBar() {

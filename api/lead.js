@@ -4,35 +4,29 @@ export default async function handler(req, res) {
   }
 
   try {
-    const payload = new URLSearchParams();
+    const formData = new FormData();
 
-    payload.append("name", req.body.name ?? "");
-    payload.append("website", req.body.website ?? "");
-    payload.append("email", req.body.email ?? "");
-    payload.append("phone", req.body.phone ?? "");
-    payload.append("budget", req.body.budget ?? "");
-    payload.append("source", "Ads Matrix Website");
+    formData.append("name", req.body.name ?? "");
+    formData.append("website", req.body.website ?? "");
+    formData.append("email", req.body.email ?? "");
+    formData.append("phone", req.body.phone ?? "");
+    formData.append("budget", req.body.budget ?? "");
+    formData.append("source", "Ads Matrix Website");
 
     const response = await fetch(
       "https://hooks.zapier.com/hooks/catch/9781487/4b40u4y/",
       {
         method: "POST",
-        body: payload,
+        body: formData,
       },
     );
 
     const text = await response.text();
 
-    if (!response.ok) {
-      return res.status(response.status).json({
-        error: "Zapier request failed",
-        details: text,
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      data: text,
+    return res.status(response.status).json({
+      ok: response.ok,
+      status: response.status,
+      response: text,
     });
   } catch (error) {
     return res.status(500).json({

@@ -36,7 +36,7 @@ export default function Home() {
 
   const team = data.team.members.map((member) => (
     <ContainerGrid key={member.id}>
-      <div className="flex flex-col justify-start items-center gap-8 py-2">
+      <div className="flex flex-col justify-start items-center gap-2 py-2">
         <img
           src={member.img}
           alt=""
@@ -152,7 +152,7 @@ export default function Home() {
               </h2>
 
               <div className="overflow-hidden w-full">
-                <div className="flex gap-4 w-full items-center justify-center">
+                <div className="flex flex-col gap-4 w-full items-center justify-center">
                   {team}
                 </div>
               </div>

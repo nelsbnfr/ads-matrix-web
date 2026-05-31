@@ -36,8 +36,12 @@ export default function Home() {
 
   const team = data.team.members.map((member) => (
     <ContainerGrid key={member.id}>
-      <div className="flex flex-col justify-start items-center gap-8 py-4">
-        <img src={member.img} alt="" className="size-80 object-cover" />
+      <div className="flex flex-col justify-start items-center gap-8 py-2">
+        <img
+          src={member.img}
+          alt=""
+          className="size-80 object-cover border-2 border-primary"
+        />
         <h1 className="text-white text-4xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
           {member.title}
         </h1>

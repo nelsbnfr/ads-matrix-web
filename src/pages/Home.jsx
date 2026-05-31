@@ -152,7 +152,7 @@ export default function Home() {
               </h2>
 
               <div className="overflow-hidden w-full">
-                <div className="flex flex-col gap-4 w-full items-center justify-center">
+                <div className="flex flex-col lg:flex-row  gap-4 w-full items-center justify-center">
                   {team}
                 </div>
               </div>

@@ -136,7 +136,15 @@ export function ReverseGrid({ children }) {
 
 export function BlurredGrid({ children }) {
   return (
-    <div className="client-card card-wobble relative flex-shrink-0 w-[340px] border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid p-8 backdrop-blur-xs">
+    <div className="client-card relative flex-shrink-0 w-[340px] border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid p-8 backdrop-blur-xs">
+      {children}
+    </div>
+  );
+}
+
+export function ContainerGrid({ children }) {
+  return (
+    <div className="client-card relative flex-shrink-0 w-[340px] border-2 border-primary shadow-[inset_0_0_20px_var(--color-primary-bg),0_0_20px_var(--color-bg-shadow)] pattern-grid p-8 backdrop-blur-xs">
       {children}
     </div>
   );

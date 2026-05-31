@@ -5,6 +5,7 @@ import {
   PerspectiveGrid,
   ReverseGrid,
   Box,
+  ContainerGrid,
 } from "../components/Grid";
 import adsMatrixContent from "../data/content";
 import { animate, motion } from "framer-motion";
@@ -31,6 +32,18 @@ export default function Home() {
         <span className="font-vga-text text-white text-xs">{client.text}</span>
       </div>
     </BlurredGrid>
+  ));
+
+  const team = data.team.members.map((member) => (
+    <ContainerGrid key={member.id}>
+      <div className="flex flex-col justify-start items-center gap-8 py-4">
+        <img src={member.img} alt="" className="size-80 object-cover" />
+        <h1 className="text-white text-4xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
+          {member.title}
+        </h1>
+        <span className="font-vga-text text-white text-xs">{member.text}</span>
+      </div>
+    </ContainerGrid>
   ));
 
   const listItem = data.topOnePercent.steps.map((item) => (
@@ -78,25 +91,6 @@ export default function Home() {
               <Button text="Kostenloses Erstgespräch" />
             </section>
           </Grid>
-          {/* =============== WAS IST DIE ADS MATRIX =============== */}
-          <div className="p-8">
-            <Box title="Was ist die Ads Matrix?">
-              <div className="flex flex-col p-8 items-center text-center gap-4">
-                <img
-                  src="/pyramid.png"
-                  alt=""
-                  className="w-[clamp(320px,80%,400px)] max-size-[500px] object-contain"
-                />
-
-                <span className="font-vga-text text-white text-sm">
-                  Ein winziger Bruchteil der hochprofessionellen,
-                  datengetriebenen Accounts teilt den globalen Werbeerfolg fast
-                  komplett unter sich auf. Die Top 1%.
-                </span>
-                <Button text="Kostenloses Erstgespräch" />
-              </div>
-            </Box>
-          </div>
         </div>
         {/* =============== KUNDEN =============== */}
         <div className="overflow-hidden w-full py-16 border-y border-primary">
@@ -119,6 +113,44 @@ export default function Home() {
                   {clients}
                   {clients}
                 </motion.div>
+              </div>
+              <Button text="Kostenloses Erstgespräch" />
+            </section>
+          </PerspectiveGrid>
+        </div>
+        <div className="w-full max-w-[1100px]">
+          {/* =============== WAS IST DIE ADS MATRIX =============== */}
+          <div className="p-8">
+            <Box title="Was ist die Ads Matrix?">
+              <div className="flex flex-col p-8 items-center text-center gap-4">
+                <img
+                  src="/pyramid.png"
+                  alt=""
+                  className="w-[clamp(320px,80%,400px)] max-size-[500px] object-contain"
+                />
+
+                <span className="font-vga-text text-white text-sm">
+                  Ein winziger Bruchteil der hochprofessionellen,
+                  datengetriebenen Accounts teilt den globalen Werbeerfolg fast
+                  komplett unter sich auf. Die Top 1%.
+                </span>
+                <Button text="Kostenloses Erstgespräch" />
+              </div>
+            </Box>
+          </div>
+        </div>
+        {/* =============== ABOUT =============== */}
+        <div className="overflow-hidden w-full py-16 border-y border-primary">
+          <PerspectiveGrid>
+            <section className="min-h-[50vh] w-full flex flex-col justify-center items-center relative z-20 gap-4 text-center">
+              <h2 className="text-white text-4xl uppercase [text-shadow:0_0_12px_var(--color-primary)]">
+                Behind the Matrix
+              </h2>
+
+              <div className="overflow-hidden w-full">
+                <div className="flex gap-4 w-full items-center justify-center">
+                  {team}
+                </div>
               </div>
               <Button text="Kostenloses Erstgespräch" />
             </section>

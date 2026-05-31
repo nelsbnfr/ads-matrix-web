@@ -83,6 +83,30 @@ const adsMatrixContent = {
       },
     ],
   },
+  team: {
+    title: "CURRENTLY ESCAPING THE MATRIX",
+    type: "logo-carousel",
+    members: [
+      {
+        id: "nels",
+        title: "Nels Bonifer",
+        text: "Marketing",
+        img: "/nels.png",
+      },
+      {
+        id: "ludwig",
+        title: "Ludwig Birke",
+        text: "Operations",
+        img: "/ludwig.png",
+      },
+      {
+        id: "felix",
+        title: "Felix Meise",
+        text: "Design",
+        img: "/felix.png",
+      },
+    ],
+  },
 
   topOnePercent: {
     title: "So bringen wir Werbekonten in die Top 1%",
